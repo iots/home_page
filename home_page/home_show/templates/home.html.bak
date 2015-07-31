@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Home</title>
+<script type="text/javascript">
+
+
+var xmlhttp;
+
+function createXHR()
+{
+	//var xmlhttp = null;
+	if(window.XMLHttpRequest){
+		xmlhttp = new XMLHttpRequest();
+	}else if(window.ActiveXObject){
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}else{
+		xmlhttp = new ActiveXObject('Msxml2.XMLHTTP');
+	}
+	if(xmlhttp){
+		;//alert('create xmlhttp success!');
+	}else{
+		alert('create xmlhttp error!');
+	}
+	//return xmlhttp;
+}
+
+function sendRequest()
+{
+	createXHR();
+	var URL = "http://127.0.0.1:8000/home_show/query/";
+
+	xmlhttp.open("GET",URL,true);
+	xmlhttp.setRequestHeader("If-Modified-Since", "0");//清除缓存
+	xmlhttp.onreadystatechange = on_button_query;  //response function.
+	xmlhttp.send();
+}
+
+
+function on_button_query()
+{
+	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	{
+		//alert(xmlhttp.responseText);	
+
+		//var txt = xmlhttp.responseText;
+		var obj = JSON.parse(xmlhttp.responseText);  //JSON.parse() transform String into Object of JavaScript.
+		online_info = 'Online Terminal: ' + obj.online;
+		sent_info = 'Message Sent: ' + obj.sent;
+		read_info = 'Message Read: ' + obj.read;
+		document.getElementById('online_info').innerHTML=online_info;
+		document.getElementById('sent_info').innerHTML=sent_info;
+		document.getElementById('read_info').innerHTML=read_info;
+
+		setTimeout("sendRequest()", 1000);
+
+	}
+	else
+	{
+		//window.alert("wrong.");
+
+	}
+}
+
+
+
+
+</script>
+</head>
+
+<body onload="sendRequest()">
+<br>
+<h1>HOME</h1>
+<br>
+<br>
+<h2><div id="online_info">
+</div>
+<div id="sent_info">
+</div>
+<div id="read_info">
+</div></h2>
+<br>
+<hr>
+<br>
+<br>
+<br>
+<br>
+<br>Online Terminal: {{number}}
+<br>
+<br>
+<br>
+<input type="button" id="button_query" value="online users" onclick="on_button_query()">
+<br>
+<br>
+<br>
+</body>
+</html>
