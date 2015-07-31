@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
@@ -8,6 +9,8 @@
 # Also note: You'll have to insert the output of 'django-admin sqlcustom [app_label]'
 # into your database.
 from __future__ import unicode_literals
+=======
+>>>>>>> 5d2d05009cfec17b0804c3c2b04162e44a24879f
 from django.db import models
 
 class Person(models.Model):
@@ -22,6 +25,7 @@ class Person(models.Model):
 #p.save()
 
 # Create your models here.
+<<<<<<< HEAD
 
 
 class EndDataPool(models.Model):
@@ -122,3 +126,5 @@ class ShowPushMessage(models.Model):
         managed = False
         db_table = 'show_push_message'
 
+=======
+>>>>>>> 5d2d05009cfec17b0804c3c2b04162e44a24879f
