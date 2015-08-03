@@ -19,6 +19,8 @@ function createXHR()
 	//return xmlhttp;
 }
 
+window.onload=sendRequest()
+
 function sendRequest()
 {
 	createXHR();
@@ -47,11 +49,11 @@ function on_button_query()
 		document.getElementById('sent_info').innerHTML=sent_info;
 		document.getElementById('read_info').innerHTML=read_info;
 
-		setTimeout("sendRequest()", 1000);
+		setTimeout("sendRequest()", 2000);
            }
 	   else
 	   {
-		alert("error:" + xmlhttp.status);
+		; //alert("error:" + xmlhttp.status);
 
 	   }
 	}
